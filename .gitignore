@@ -31,3 +31,11 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### MacOS General
+.DS_Store
+.AppleDouble
+.LSOverride
+
+### MacOS Thumbnails
+._*
