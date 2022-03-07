@@ -2,8 +2,6 @@ package info.aaronsmith.demo.cloudplatform.api;
 
 import java.util.List;
 
-import javax.persistence.EntityNotFoundException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import info.aaronsmith.demo.cloudplatform.accounts.Account;
 import info.aaronsmith.demo.cloudplatform.accounts.AccountNotFoundException;
 import info.aaronsmith.demo.cloudplatform.accounts.AccountService;
+import info.aaronsmith.demo.cloudplatform.accounts.TenantNameUnavailableException;
 
 @RestController
 public class Controller {
@@ -31,9 +30,9 @@ public class Controller {
 	
 	// CREATE
 	@PostMapping("/createAccount")
-	public ResponseEntity<Account> createAccount(@RequestBody Account account) {
-		Account newAccount = as.createAccount(account);
-		return new ResponseEntity<Account>(newAccount, HttpStatus.CREATED);
+	public ResponseEntity<Account> createAccount(@RequestBody Account account) 
+		throws TenantNameUnavailableException {
+			return new ResponseEntity<Account>(as.createAccount(account), HttpStatus.CREATED);
 	}
 	
 	// READ - get all accounts
@@ -44,13 +43,13 @@ public class Controller {
 	
 	// READ - get account by id
 	@GetMapping("/getAccount/{id}")
-	public ResponseEntity<Account> getAccount(@PathVariable Integer id) {
+	public ResponseEntity<Account> getAccount(@PathVariable Integer id) throws AccountNotFoundException {
 		return new ResponseEntity<Account>(as.getAccount(id), HttpStatus.OK);
 	}
 	
 	// UPDATE
 	@PutMapping("/updateAccount/{id}")
-	public ResponseEntity<Account> updateAccount(@PathVariable Integer id, @RequestBody Account account) {
+	public ResponseEntity<Account> updateAccount(@PathVariable Integer id, @RequestBody Account account) throws TenantNameUnavailableException {
 		return new ResponseEntity<Account>(as.updateAccount(id, account), HttpStatus.OK);
 	}
 	

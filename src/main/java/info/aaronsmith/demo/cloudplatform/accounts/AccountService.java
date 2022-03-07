@@ -3,6 +3,7 @@ package info.aaronsmith.demo.cloudplatform.accounts;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -17,9 +18,23 @@ public class AccountService {
 		this.repo = repo;
 	}
 	
+	private Account saveAccountToDatabase(Account account) throws TenantNameUnavailableException {
+		try {
+			return repo.save(account);
+		}
+		catch (DataIntegrityViolationException e) {
+			throw new TenantNameUnavailableException(account.getTenantName());
+		}
+	}
+	
 	// CREATE
-	public Account createAccount(Account account) {
-		return repo.save(account);
+	public Account createAccount(Account account) throws TenantNameUnavailableException {
+		try {
+			return saveAccountToDatabase(account);
+		}
+		catch (Exception e) {
+			throw e;
+		}
 	}
 	
 	// READ
@@ -28,7 +43,7 @@ public class AccountService {
 	}
 	
 	// READ
-	public Account getAccount(Integer id) {
+	public Account getAccount(Integer id) throws AccountNotFoundException {
 		try {
 			return repo.findById(id).get();
 		}
@@ -38,7 +53,7 @@ public class AccountService {
 	}
 	
 	// UPDATE
-	public Account updateAccount(Integer id, Account account) {
+	public Account updateAccount(Integer id, Account account) throws AccountNotFoundException, TenantNameUnavailableException {
 		try {
 			// get existing account from database
 			Account foundAccount = getAccount(id);
@@ -47,7 +62,7 @@ public class AccountService {
 			foundAccount.setTenantName(account.getTenantName());
 			
 			// save Account back to database
-			return repo.save(foundAccount);
+			return saveAccountToDatabase(foundAccount);
 		}
 		catch (Exception e) {
 			throw e;
@@ -55,7 +70,7 @@ public class AccountService {
 	}
 	
 	// DELETE
-	public void deleteAccount(Integer id) {
+	public void deleteAccount(Integer id) throws AccountNotFoundException {
 		try {
 			// get account object to verify it exists in database
 			getAccount(id);
