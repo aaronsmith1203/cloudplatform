@@ -16,5 +16,4 @@ public class AccountNotFoundException extends EntityNotFoundException {
 	public AccountNotFoundException(int id) {
 		super("Account with id (" + id + ") does not exist.");
 	}
-	
 }
