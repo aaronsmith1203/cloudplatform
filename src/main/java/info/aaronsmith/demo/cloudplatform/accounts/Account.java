@@ -34,9 +34,6 @@ public class Account {
 	public Integer getId() {
 		return id;
 	}
-	public void setId(Integer id) {
-		this.id = id;
-	}
 
 	public String getTenantName() {
 		return tenantName;
@@ -44,5 +41,14 @@ public class Account {
 
 	public void setTenantName(String tenantName) {
 		this.tenantName = tenantName;
+	}
+	
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+	    if (o == null || getClass() != o.getClass()) return false;
+	    Account that = (Account) o;
+	    return id.equals(that.getId()) &&
+			   tenantName.equals(that.getTenantName());
 	}
 }

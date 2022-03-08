@@ -3,7 +3,6 @@ package info.aaronsmith.demo.cloudplatform.accounts;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 @Service
