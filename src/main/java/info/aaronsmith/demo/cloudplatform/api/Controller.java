@@ -27,14 +27,14 @@ public class Controller {
 	public Controller(AccountService accountService) {
 		this.as = accountService;
 	}
-	
+
 	// CREATE
 	@PostMapping("/createAccount")
 	public ResponseEntity<Account> createAccount(@RequestBody Account account) 
 		throws TenantNameUnavailableException {
 			return new ResponseEntity<Account>(as.createAccount(account), HttpStatus.CREATED);
 	}
-	
+
 	// READ - get all accounts
 	@GetMapping("/getAccounts")
 	public ResponseEntity<List<Account>> getAccount() {

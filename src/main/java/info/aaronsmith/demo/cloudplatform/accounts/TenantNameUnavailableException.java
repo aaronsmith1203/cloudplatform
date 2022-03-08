@@ -1,10 +1,11 @@
 package info.aaronsmith.demo.cloudplatform.accounts;
 
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(code = HttpStatus.BAD_REQUEST)
-public class TenantNameUnavailableException extends Exception {
+public class TenantNameUnavailableException extends DataIntegrityViolationException {
 	
 	/**
 	 * 

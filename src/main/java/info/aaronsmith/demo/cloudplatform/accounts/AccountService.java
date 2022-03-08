@@ -22,7 +22,7 @@ public class AccountService {
 		try {
 			return repo.save(account);
 		}
-		catch (DataIntegrityViolationException e) {
+		catch (Exception e) {
 			throw new TenantNameUnavailableException(account.getTenantName());
 		}
 	}
@@ -71,13 +71,6 @@ public class AccountService {
 	
 	// DELETE
 	public void deleteAccount(Integer id) throws AccountNotFoundException {
-		try {
-			// get account object to verify it exists in database
-			getAccount(id);
-			repo.deleteById(id);
-		}
-		catch (Exception e) {
-			throw e;
-		}
+		repo.deleteById(id);
 	}
 }
