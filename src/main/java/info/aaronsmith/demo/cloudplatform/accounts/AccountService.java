@@ -70,6 +70,11 @@ public class AccountService {
 	
 	// DELETE
 	public void deleteAccount(Integer id) throws AccountNotFoundException {
-		repo.deleteById(id);
+		try {
+			repo.deleteById(id);
+		}
+		catch (Exception e) {
+			throw new AccountNotFoundException(id);
+		}
 	}
 }

@@ -55,14 +55,9 @@ public class Controller {
 	
 	// DELETE
 	@DeleteMapping("/deleteAccount/{id}")
-	public ResponseEntity<String> deleteAccount(@PathVariable Integer id) {
-		try {
-			as.deleteAccount(id);
-			return new ResponseEntity<String>("Successfully deleted account with id (" + id + ")", HttpStatus.OK);
-		}
-		catch (Exception e) {
-			throw e;
-		}
+	public ResponseEntity<String> deleteAccount(@PathVariable Integer id) throws AccountNotFoundException {
+		as.deleteAccount(id);
+		return new ResponseEntity<String>("Successfully deleted account with id (" + id + ")", HttpStatus.OK);
 	}
 	
 }
