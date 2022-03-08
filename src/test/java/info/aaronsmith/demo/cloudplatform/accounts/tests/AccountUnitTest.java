@@ -66,6 +66,19 @@ public class AccountUnitTest {
 	}
 	
 	@Test
+	public void Given_NullInput_When_CompareWithEquals_Then_ReturnFalse() {
+		// GIVEN
+		Account account1 = new Account(1, "asuretenant");
+		Account account2 = null;
+		
+		// WHEN
+		boolean actual = account1.equals(account2);
+		
+		// THEN
+		assertThat(actual).isFalse();
+	}
+	
+	@Test
 	public void Given_AccountWithSameAttributes_When_CompareWithEquals_Then_ReturnTrue() {
 
 		// GIVEN
