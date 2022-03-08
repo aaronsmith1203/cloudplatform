@@ -8,7 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import info.aaronsmith.demo.cloudplatform.accounts.Account;
 
 @SpringBootTest
-public class AccountUnitTests {
+public class AccountUnitTest {
 
 	@Test
 	public void Given_AccountWithDifferentID_When_CompareWithEquals_Then_ReturnFalse() {

@@ -22,7 +22,7 @@ import info.aaronsmith.demo.cloudplatform.accounts.AccountService;
 import info.aaronsmith.demo.cloudplatform.accounts.TenantNameUnavailableException;
 
 @SpringBootTest
-public class AccountServiceUnitTests {
+public class AccountServiceUnitTest {
 
 	@Autowired
 	private AccountService service;
@@ -30,10 +30,10 @@ public class AccountServiceUnitTests {
 	@MockBean
 	private AccountRepo repo;
 
-	// service.createAccount() tests
+	// CREATE
 
 	@Test
-	public void Given_ValidAccountArguments_When_CreateAccount_Then_ReturnNewAccount() throws Exception {
+	public void Given_ValidArguments_When_CreateAccount_Then_ReturnNewAccount() throws Exception {
 		// GIVEN
 		final Account INPUT_ACCOUNT = new Account("asuretenant");
 		final Account EXPECTED_ACCOUNT = new Account(1, "asuretenant");
@@ -63,7 +63,7 @@ public class AccountServiceUnitTests {
 		Mockito.verify(repo, Mockito.times(1)).save(INPUT_ACCOUNT);
 	}
 
-	// service.getAccount() tests
+	// READ
 
 	@Test
 	public void Given_NoArguments_When_GetAccount_Then_ReturnListOfAllAccounts() {
@@ -82,7 +82,7 @@ public class AccountServiceUnitTests {
 	}
 
 	@Test
-	public void Given_ExistingId_When_GetAccount_Then_ReturnAccount() {
+	public void Given_ValidId_When_GetAccount_Then_ReturnAccount() {
 		// GIVEN
 		final Integer INPUT_ID = 1;
 		final Account EXPECTED_ACCOUNT = new Account(7, "asuretenant");
@@ -111,10 +111,10 @@ public class AccountServiceUnitTests {
 		Mockito.verify(repo, Mockito.times(1)).findById(INPUT_ID);
 	}
 
-	// service.updateAccount() tests
+	// UPDATE
 
 	@Test
-	public void Given_ExistingIdAndValidArguments_When_UpdateAccount_Then_ReturnUpdatedAccount() {
+	public void Given_ValidIdAndArguments_When_UpdateAccount_Then_ReturnUpdatedAccount() {
 		// GIVEN
 		final Integer INPUT_ID = 1;
 		final Account INPUT_ACCOUNT = new Account("asuretenant");
@@ -158,19 +158,19 @@ public class AccountServiceUnitTests {
 
 		// WHEN
 		Mockito.when(repo.findById(INPUT_ID)).thenReturn(Optional.of(FOUND_ACCOUNT));
-		Mockito.when(repo.save(INPUT_ACCOUNT)).thenThrow(EXPECTED_EXCEPTION);
+		Mockito.when(repo.save(FOUND_ACCOUNT)).thenThrow(EXPECTED_EXCEPTION);
 		Throwable actual = catchThrowable(() -> service.updateAccount(INPUT_ID, INPUT_ACCOUNT));
 
 		// THEN
 		assertThat(actual.getClass()).isEqualTo(EXPECTED_EXCEPTION.getClass());
 		Mockito.verify(repo, Mockito.times(1)).findById(INPUT_ID);
-		Mockito.verify(repo, Mockito.times(1)).save(INPUT_ACCOUNT);
+		Mockito.verify(repo, Mockito.times(1)).save(FOUND_ACCOUNT);
 	}
 
-	// service.deleteAccount() tests
+	// DELETE
 
 	@Test
-	public void Given_ExistingId_When_DeleteAccount_Then_NoReturnValue() {
+	public void Given_ValidId_When_DeleteAccount_Then_NoReturnValue() {
 		// GIVEN
 		final Integer INPUT_ID = 1;
 
