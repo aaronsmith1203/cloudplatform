@@ -35,8 +35,33 @@ public class AccountServiceUnitTest {
 	@Test
 	public void Given_ValidArguments_When_CreateAccount_Then_ReturnNewAccount() throws Exception {
 		// GIVEN
-		final Account INPUT_ACCOUNT = new Account("asuretenant");
-		final Account EXPECTED_ACCOUNT = new Account(1, "asuretenant");
+		final Account INPUT_ACCOUNT = new Account(
+			"Mr",
+			"Aaron",
+			"Smith",
+			"asuretenant",
+			"22a Road Avenue",
+			"",
+			"Mockiton",
+			"Javashire",
+			"MO22 8JA",
+			"01234 567890",
+			"aaronsmith@mydomain.com"
+		);
+		final Account EXPECTED_ACCOUNT = new Account(
+			1,
+			"Mr",
+			"Aaron",
+			"Smith",
+			"asuretenant",
+			"22a Road Avenue",
+			"",
+			"Mockiton",
+			"Javashire",
+			"MO22 8JA",
+			"01234 567890",
+			"aaronsmith@mydomain.com"
+		);
 
 		// WHEN
 		Mockito.when(repo.save(INPUT_ACCOUNT)).thenReturn(EXPECTED_ACCOUNT);
@@ -50,9 +75,20 @@ public class AccountServiceUnitTest {
 	@Test
 	public void Given_UnavailableTenantName_When_CreateAccount_Then_ThrowTenantNameUnavailableException() {
 		// GIVEN
-		final String TENANT_NAME = "asuretenant";
-		final Account INPUT_ACCOUNT = new Account(TENANT_NAME);
-		final Exception EXPECTED_EXCEPTION = new TenantNameUnavailableException(TENANT_NAME);
+		final Account INPUT_ACCOUNT = new Account(
+			"Mr",
+			"Aaron",
+			"Smith",
+			"asuretenant",
+			"22a Road Avenue",
+			"",
+			"Mockiton",
+			"Javashire",
+			"MO22 8JA",
+			"01234 567890",
+			"aaronsmith@mydomain.com"
+		);
+		final Exception EXPECTED_EXCEPTION = new TenantNameUnavailableException("asuretenant");
 
 		// WHEN
 		Mockito.when(repo.save(INPUT_ACCOUNT)).thenThrow(EXPECTED_EXCEPTION);
@@ -68,8 +104,50 @@ public class AccountServiceUnitTest {
 	@Test
 	public void Given_NoArguments_When_GetAccount_Then_ReturnListOfAllAccounts() {
 		// GIVEN
-		final Account[] ACCOUNT_ARRAY = { new Account(1, "mybusiness"), new Account(2, "qa-training"),
-				new Account(4, "asuretenant") };
+		final Account[] ACCOUNT_ARRAY = { 
+			new Account(
+				1,
+				"Mr",
+				"Donald",
+				"Gibson",
+				"asure",
+				"Flat 4",
+				"22 Roadington Road",
+				"Mockleton",
+				"Java",
+				"JA1 2JA",
+				"01234 567890",
+				"donald.gibson@asure.com"
+			),
+			new Account(
+				2,
+				"Miss",
+				"Jennifer",
+				"Green",
+				"qa-training",
+				"22a Road Avenue",
+				"",
+				"Mockiton",
+				"Javashire",
+				"MO22 8JA",
+				"0123 4567 890",
+				"jengreen@qa.com"
+			),
+			new Account(
+				3,
+				"Mr",
+				"Aaron",
+				"Smith",
+				"smith-development",
+				"83 Apple Turnover",
+				"Bakery Way",
+				"Mockassin",
+				"Javerley",
+				"AP12 1TO",
+				"0123 456 7890",
+				"asmith@mydomain.com"
+			)
+		};
 		final List<Account> EXPECTED_ACCOUNTS = new ArrayList<Account>(Arrays.asList(ACCOUNT_ARRAY));
 
 		// WHEN
@@ -85,7 +163,20 @@ public class AccountServiceUnitTest {
 	public void Given_ValidId_When_GetAccount_Then_ReturnAccount() {
 		// GIVEN
 		final Integer INPUT_ID = 1;
-		final Account EXPECTED_ACCOUNT = new Account(7, "asuretenant");
+		final Account EXPECTED_ACCOUNT = new Account(
+			1,
+			"Mr",
+			"Aaron",
+			"Smith",
+			"asuretenant",
+			"22a Road Avenue",
+			"",
+			"Mockiton",
+			"Javashire",
+			"MO22 8JA",
+			"01234 567890",
+			"aaronsmith@mydomain.com"
+		);
 
 		// WHEN
 		Mockito.when(repo.findById(INPUT_ID)).thenReturn(Optional.of(EXPECTED_ACCOUNT));
@@ -117,9 +208,47 @@ public class AccountServiceUnitTest {
 	public void Given_ValidIdAndArguments_When_UpdateAccount_Then_ReturnUpdatedAccount() {
 		// GIVEN
 		final Integer INPUT_ID = 1;
-		final Account INPUT_ACCOUNT = new Account("asuretenant");
-		final Account FOUND_ACCOUNT = new Account(1, "unsuretenant");
-		final Account EXPECTED_ACCOUNT = new Account(1, "asuretenant");
+		final Account INPUT_ACCOUNT = new Account(
+			"Mr",
+			"Aaron",
+			"Smith",
+			"NEWasuretenant",
+			"22a Road Avenue",
+			"",
+			"Mockiton",
+			"Javashire",
+			"MO22 8JA",
+			"01234 567890",
+			"aaronsmith@mydomain.com"
+		);
+		final Account FOUND_ACCOUNT = new Account(
+			1,
+			"Mr",
+			"Aaron",
+			"Smith",
+			"asuretenant",
+			"22a Road Avenue",
+			"",
+			"Mockiton",
+			"Javashire",
+			"MO22 8JA",
+			"01234 567890",
+			"aaronsmith@mydomain.com"
+		);
+		final Account EXPECTED_ACCOUNT = new Account(
+			1,
+			"Mr",
+			"Aaron",
+			"Smith",
+			"NEWasuretenant",
+			"22a Road Avenue",
+			"",
+			"Mockiton",
+			"Javashire",
+			"MO22 8JA",
+			"01234 567890",
+			"aaronsmith@mydomain.com"
+		);
 
 		// WHEN
 		Mockito.when(repo.findById(INPUT_ID)).thenReturn(Optional.of(FOUND_ACCOUNT));
@@ -136,7 +265,19 @@ public class AccountServiceUnitTest {
 	public void Given_NonExistantId_When_UpdateAccount_Then_ThrowAccountNotFoundException() {
 		// GIVEN
 		final Integer INPUT_ID = 99;
-		final Account INPUT_ACCOUNT = new Account("asuretenant");
+		final Account INPUT_ACCOUNT = new Account(
+			"Mr",
+			"Aaron",
+			"Smith",
+			"asuretenant",
+			"22a Road Avenue",
+			"",
+			"Mockiton",
+			"Javashire",
+			"MO22 8JA",
+			"01234 567890",
+			"aaronsmith@mydomain.com"
+		);
 		final Exception EXPECTED_EXCEPTION = new AccountNotFoundException(INPUT_ID);
 
 		// WHEN
@@ -152,9 +293,34 @@ public class AccountServiceUnitTest {
 	public void Given_UnavailableTenantName_When_UpdateAccount_Then_ThrowTenantNameUnavailableException() {
 		// GIVEN
 		final Integer INPUT_ID = 2;
-		final Account INPUT_ACCOUNT = new Account("asuretenant");
-		final Account FOUND_ACCOUNT = new Account(2, "superbusiness1000");
-		final Exception EXPECTED_EXCEPTION = new TenantNameUnavailableException("asuretenant");
+		final Account INPUT_ACCOUNT = new Account(			
+			"Mr",
+			"Aaron",
+			"Smith",
+			"NEWasuretenant",
+			"22a Road Avenue",
+			"",
+			"Mockiton",
+			"Javashire",
+			"MO22 8JA",
+			"01234 567890",
+			"aaronsmith@mydomain.com"
+		);
+		final Account FOUND_ACCOUNT = new Account(
+			2,
+			"Mr",
+			"Aaron",
+			"Smith",
+			"asuretenant",
+			"22a Road Avenue",
+			"",
+			"Mockiton",
+			"Javashire",
+			"MO22 8JA",
+			"01234 567890",
+			"aaronsmith@mydomain.com"
+			);
+		final Exception EXPECTED_EXCEPTION = new TenantNameUnavailableException("NEWasuretenant");
 
 		// WHEN
 		Mockito.when(repo.findById(INPUT_ID)).thenReturn(Optional.of(FOUND_ACCOUNT));

@@ -52,14 +52,39 @@ public class ControllerIntegrationTest {
 		@Test
 		public void Given_ValidArguments_When_CreateAccountRequest_Then_ReturnCreatedAccountAndStatusCreated() throws Exception {
 			// GIVEN
-			final Account INPUT_ACCOUNT = new Account("mynewtenant209");
+			final Account INPUT_ACCOUNT = new Account(
+				"Mr",
+				"Ruvid",
+				"Willran",
+				"mynewtenant209",
+				"83 Apple Turnover",
+				"Bakery Way",
+				"Mockassin",
+				"Javerley",
+				"AP12 1TO",
+				"0123 456 7890",
+				"ruvid.willran@somesuch.com"
+			);
 			final String INPUT_ACCOUNT_AS_JSON = mapper.writeValueAsString(INPUT_ACCOUNT);
 			final RequestBuilder REQUEST = post("/createAccount")
 										  .contentType(MediaType.APPLICATION_JSON)
 										  .content(INPUT_ACCOUNT_AS_JSON);
 			
 			// WHEN, THEN
-			final Account EXPECTED_ACCOUNT = new Account(4, "mynewtenant209");
+			final Account EXPECTED_ACCOUNT = new Account(
+				4,
+				"Mr",
+				"Ruvid",
+				"Willran",
+				"mynewtenant209",
+				"83 Apple Turnover",
+				"Bakery Way",
+				"Mockassin",
+				"Javerley",
+				"AP12 1TO",
+				"0123 456 7890",
+				"ruvid.willran@somesuch.com"
+			);
 			final String EXPECTED_ACCOUNT_AS_JSON = mapper.writeValueAsString(EXPECTED_ACCOUNT);
 			
 			final ResultMatcher statusMatcher = status().isCreated();
@@ -72,7 +97,19 @@ public class ControllerIntegrationTest {
 		@Test
 		public void Given_ExistingTenantName_When_CreateAccountRequest_Then_ReturnExceptionAndStatusBadRequest() throws Exception {
 			// GIVEN
-			final Account INPUT_ACCOUNT = new Account("qa-training");
+			final Account INPUT_ACCOUNT = new Account(
+				"Mr",
+				"Ruvid",
+				"Willran",
+				"qa-training",
+				"83 Apple Turnover",
+				"Bakery Way",
+				"Mockassin",
+				"Javerley",
+				"AP12 1TO",
+				"0123 456 7890",
+				"ruvid.willran@somesuch.com"
+			);
 			final String INPUT_ACCOUNT_AS_JSON = mapper.writeValueAsString(INPUT_ACCOUNT);
 			final RequestBuilder REQUEST = post("/createAccount")
 										  .contentType(MediaType.APPLICATION_JSON)
@@ -101,9 +138,48 @@ public class ControllerIntegrationTest {
 			
 			// WHEN, THEN
 			final Account[] EXPECTED_ACCOUNTS = {
-				new Account(1, "asure"),
-				new Account(2, "qa-training"),
-				new Account(3, "smith-development")
+				new Account(
+					1,
+					"Mr",
+					"Donald",
+					"Gibson",
+					"asure",
+					"Flat 4",
+					"22 Roadington Road",
+					"Mockleton",
+					"Java",
+					"JA1 2JA",
+					"01234 567890",
+					"donald.gibson@asure.com"
+				),
+				new Account(
+					2,
+					"Miss",
+					"Jennifer",
+					"Green",
+					"qa-training",
+					"22a Road Avenue",
+					"",
+					"Mockiton",
+					"Javashire",
+					"MO22 8JA",
+					"0123 4567 890",
+					"jengreen@qa.com"
+				),
+				new Account(
+					3,
+					"Mr",
+					"Aaron",
+					"Smith",
+					"smith-development",
+					"83 Apple Turnover",
+					"Bakery Way",
+					"Mockassin",
+					"Javerley",
+					"AP12 1TO",
+					"0123 456 7890",
+					"asmith@mydomain.com"
+				)
 			};
 			final List<Account> EXPECTED_ACCOUNTS_LIST = Arrays.asList(EXPECTED_ACCOUNTS);
 			final String EXPECTED_ACCOUNTS_AS_JSON = mapper.writeValueAsString(EXPECTED_ACCOUNTS_LIST);
@@ -121,7 +197,20 @@ public class ControllerIntegrationTest {
 			final RequestBuilder REQUEST = get("/getAccount/2");
 			
 			// WHEN, THEN
-			final Account EXPECTED_ACCOUNT = new Account(2, "qa-training");
+			final Account EXPECTED_ACCOUNT = new Account(
+				2,
+				"Miss",
+				"Jennifer",
+				"Green",
+				"qa-training",
+				"22a Road Avenue",
+				"",
+				"Mockiton",
+				"Javashire",
+				"MO22 8JA",
+				"0123 4567 890",
+				"jengreen@qa.com"
+			);
 			final String EXPECTED_ACCOUNT_AS_JSON = mapper.writeValueAsString(EXPECTED_ACCOUNT);
 			final ResultMatcher EXPECTED_STATUS = status().isOk();
 			final ResultMatcher EXPECTED_CONTENT = content().json(EXPECTED_ACCOUNT_AS_JSON);
@@ -157,14 +246,39 @@ public class ControllerIntegrationTest {
 		public void Given_ValidArguments_When_UpdateAccountRequest_Then_ReturnUpdatedAccountAndStatusOk() throws Exception {
 			// GIVEN
 			
-			final Account INPUT_ACCOUNT = new Account("smith-dev");
+			final Account INPUT_ACCOUNT = new Account(
+				"Mr",
+				"Aaron",
+				"Smith",
+				"smith-dev",
+				"83 Apple Turnover",
+				"Bakery Way",
+				"Mockassin",
+				"Javerley",
+				"AP12 1TO",
+				"0123 456 7890",
+				"asmith@mydomain.com"
+			);		
 			final String INPUT_ACCOUNT_AS_JSON = mapper.writeValueAsString(INPUT_ACCOUNT);
 			final RequestBuilder REQUEST = put("/updateAccount/3")
 										  .contentType(MediaType.APPLICATION_JSON)
 										  .content(INPUT_ACCOUNT_AS_JSON);
 			
 			// WHEN, THEN
-			final Account EXPECTED_ACCOUNT = new Account(3, "smith-dev");
+			final Account EXPECTED_ACCOUNT = new Account(
+				3,
+				"Mr",
+				"Aaron",
+				"Smith",
+				"smith-dev",
+				"83 Apple Turnover",
+				"Bakery Way",
+				"Mockassin",
+				"Javerley",
+				"AP12 1TO",
+				"0123 456 7890",
+				"asmith@mydomain.com"
+			);
 			final String EXPECTED_ACCOUNT_AS_JSON = mapper.writeValueAsString(EXPECTED_ACCOUNT);
 			
 			final ResultMatcher statusMatcher = status().isOk();
@@ -177,7 +291,19 @@ public class ControllerIntegrationTest {
 		@Test
 		public void Given_NonExistantId_When_UpdateAccountRequest_Then_ReturnExceptionAndStatusNotFound() throws Exception {
 			// GIVEN
-			final Account INPUT_ACCOUNT = new Account("anothertenant");
+			final Account INPUT_ACCOUNT = new Account(
+				"Mr",
+				"Ruvid",
+				"Willran",
+				"mynewtenant209",
+				"83 Apple Turnover",
+				"Bakery Way",
+				"Mockassin",
+				"Javerley",
+				"AP12 1TO",
+				"0123 456 7890",
+				"ruvid.willran@somesuch.com"
+			);
 			final String INPUT_ACCOUNT_AS_JSON = mapper.writeValueAsString(INPUT_ACCOUNT);
 			final RequestBuilder REQUEST = put("/updateAccount/99")
 										  .contentType(MediaType.APPLICATION_JSON)
@@ -200,7 +326,19 @@ public class ControllerIntegrationTest {
 		@Test
 		public void Given_ExistingTenantName_When_UpdateAccountRequest_Then_ReturnExceptionAndStatusBadRequest() throws Exception {
 			// GIVEN
-			final Account INPUT_ACCOUNT = new Account("qa-training");
+			final Account INPUT_ACCOUNT = new Account(
+				"Mr",
+				"Aaron",
+				"Smith",
+				"qa-training",
+				"83 Apple Turnover",
+				"Bakery Way",
+				"Mockassin",
+				"Javerley",
+				"AP12 1TO",
+				"0123 456 7890",
+				"asmith@mydomain.com"
+			);
 			final String INPUT_ACCOUNT_AS_JSON = mapper.writeValueAsString(INPUT_ACCOUNT);
 			final RequestBuilder REQUEST = put("/updateAccount/3")
 										  .contentType(MediaType.APPLICATION_JSON)
