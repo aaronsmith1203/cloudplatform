@@ -58,7 +58,17 @@ public class AccountService {
 			Account foundAccount = getAccount(id);
 			
 			// update Account attributes
+			foundAccount.setTitle(account.getTitle());
+			foundAccount.setFirstName(account.getFirstName());
+			foundAccount.setLastName(account.getLastName());
 			foundAccount.setTenantName(account.getTenantName());
+			foundAccount.setAddressLine1(account.getAddressLine1());
+			foundAccount.setAddressLine2(account.getAddressLine2());
+			foundAccount.setCity(account.getCity());
+			foundAccount.setCounty(account.getCounty());
+			foundAccount.setPostCode(account.getPostCode());
+			foundAccount.setTelephoneNumber(account.getTelephoneNumber());
+			foundAccount.setEmailAddress(account.getEmailAddress());
 			
 			// save Account back to database
 			return saveAccountToDatabase(foundAccount);
