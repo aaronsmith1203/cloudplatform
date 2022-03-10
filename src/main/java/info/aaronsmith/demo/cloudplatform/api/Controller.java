@@ -56,6 +56,12 @@ public class Controller {
 			return new ResponseEntity<Account>(as.getAccount(id), HttpStatus.OK);
 		}
 		
+		// READ - get account by email address
+		@GetMapping("/getAccount/byemail/{emailAddress}")
+		public ResponseEntity<Account> getAccount(@PathVariable String emailAddress) throws AccountNotFoundException {
+			return new ResponseEntity<Account>(as.getAccount(emailAddress), HttpStatus.OK);
+		}
+		
 		// UPDATE
 		@PutMapping("/updateAccount/{id}")
 		public ResponseEntity<Account> updateAccount(@PathVariable Integer id, @RequestBody Account account) throws TenantNameUnavailableException {
