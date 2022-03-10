@@ -45,6 +45,7 @@ public class Account {
 	private String telephoneNumber;
 	
 	@NotNull
+	@Column(unique = true, nullable = false)
 	// need to validate this
 	private String emailAddress;
 	
