@@ -219,11 +219,17 @@ public class Account {
 			return false;
 		}
 		Account other = (Account) obj;
-		return Objects.equals(addressLine1, other.addressLine1) && Objects.equals(addressLine2, other.addressLine2)
-				&& Objects.equals(city, other.city) && Objects.equals(county, other.county)
-				&& Objects.equals(emailAddress, other.emailAddress) && Objects.equals(firstName, other.firstName)
-				&& Objects.equals(id, other.id) && Objects.equals(lastName, other.lastName)
-				&& Objects.equals(postCode, other.postCode) && Objects.equals(telephoneNumber, other.telephoneNumber)
-				&& Objects.equals(tenantName, other.tenantName) && Objects.equals(title, other.title);
+		return Objects.equals(addressLine1, other.addressLine1) 
+				&& Objects.equals(addressLine2, other.addressLine2)
+				&& Objects.equals(city, other.city) 
+				&& Objects.equals(county, other.county)
+				&& Objects.equals(emailAddress, other.emailAddress) 
+				&& Objects.equals(firstName, other.firstName)
+				&& Objects.equals(id, other.id) 
+				&& Objects.equals(lastName, other.lastName)
+				&& Objects.equals(postCode, other.postCode) 
+				&& Objects.equals(telephoneNumber, other.telephoneNumber)
+				&& Objects.equals(tenantName, other.tenantName) 
+				&& Objects.equals(title, other.title);
 	}	
 }
