@@ -66,12 +66,12 @@ public class Controller {
 		@DeleteMapping("/deleteAccount/{id}")
 		public ResponseEntity<String> deleteAccount(@PathVariable Integer id) throws AccountNotFoundException {
 			as.deleteAccount(id);
-			return new ResponseEntity<String>("Successfully deleted account with id (" + id + ")", HttpStatus.OK);
+			return new ResponseEntity<String>("Successfully deleted Account with id (" + id + ")", HttpStatus.OK);
 		}
 	
-	//////////////////
-	// CLOUDSERVICE //
-	//////////////////
+	///////////////////
+	// CLOUD SERVICE //
+	///////////////////
 	
 		// CREATE
 		@PostMapping("/createService")
@@ -101,7 +101,7 @@ public class Controller {
 		@DeleteMapping("/deleteService/{id}")
 		public ResponseEntity<String> deleteService(@PathVariable Integer id) throws CloudServiceNotFoundException {
 			cs.deleteService(id);
-			return new ResponseEntity<String>("Successfully deleted service with id (" + id + ")", HttpStatus.OK);
+			return new ResponseEntity<String>("Successfully deleted CloudService with id (" + id + ")", HttpStatus.OK);
 		}
 		
 }
