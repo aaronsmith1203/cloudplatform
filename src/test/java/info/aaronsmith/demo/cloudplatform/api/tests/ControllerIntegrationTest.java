@@ -227,6 +227,33 @@ public class ControllerIntegrationTest {
 		}
 		
 		@Test
+		public void Given_ValidEmailAddress_When_GetAccountRequest_Then_ReturnAccountAndStatusOk() throws Exception {
+			// GIVEN
+			final RequestBuilder REQUEST = get("/getAccount/byemail/asmith@mydomain.com");
+			
+			// WHEN, THEN
+			final Account EXPECTED_ACCOUNT = new Account(
+				3,
+				"Mr",
+				"Aaron",
+				"Smith",
+				"smith-development",
+				"83 Apple Turnover",
+				"Bakery Way",
+				"Mockassin",
+				"Javerley",
+				"AP12 1TO",
+				"0123 456 7890",
+				"asmith@mydomain.com"
+			);
+			final String EXPECTED_ACCOUNT_AS_JSON = mapper.writeValueAsString(EXPECTED_ACCOUNT);
+			final ResultMatcher EXPECTED_STATUS = status().isOk();
+			final ResultMatcher EXPECTED_CONTENT = content().json(EXPECTED_ACCOUNT_AS_JSON);
+	
+			mvc.perform(REQUEST).andExpect(EXPECTED_CONTENT).andExpect(EXPECTED_STATUS);
+		}
+		
+		@Test
 		public void Given_NonExistantId_When_GetAccountRequest_Then_ReturnExceptionAndStatusNotFound() throws Exception {
 			// GIVEN
 			final RequestBuilder REQUEST = get("/getAccount/4")
@@ -240,6 +267,26 @@ public class ControllerIntegrationTest {
 			final ResultMatcher statusMatcher = status().isNotFound();
 			//final ResultMatcher EXPECTED_ERROR = status().reason(EXPECTED_MESSAGE);
 			//final ResultMatcher test2 = jsonPath("$.['message']", is(equalTo(EXPECTED_MESSAGE)));
+			final ResultMatcher exceptionMatcher = result -> assertThat(result.getResolvedException().getClass()).isEqualTo(EXPECTED_EXCEPTION.getClass()); 
+			final ResultMatcher messageMatcher = result -> assertThat(result.getResolvedException().getMessage()).isEqualTo(EXPECTED_MESSAGE);
+			
+			mvc.perform(REQUEST).andExpect(statusMatcher)
+								.andExpect(exceptionMatcher)
+								.andExpect(messageMatcher);
+		}
+		
+		@Test
+		public void Given_NonExistantEmailAddress_When_GetAccountRequest_Then_ReturnExceptionAndStatusNotFound() throws Exception {
+			// GIVEN
+			final RequestBuilder REQUEST = get("/getAccount/byemail/notreal@noaddress.com")
+					.contentType(MediaType.APPLICATION_JSON);
+			
+			// WHEN, THEN
+			final AccountNotFoundException EXPECTED_EXCEPTION =
+					new AccountNotFoundException(4);
+			final String EXPECTED_MESSAGE = "Account with email address (notreal@noaddress.com) does not exist.";
+			
+			final ResultMatcher statusMatcher = status().isNotFound();
 			final ResultMatcher exceptionMatcher = result -> assertThat(result.getResolvedException().getClass()).isEqualTo(EXPECTED_EXCEPTION.getClass()); 
 			final ResultMatcher messageMatcher = result -> assertThat(result.getResolvedException().getMessage()).isEqualTo(EXPECTED_MESSAGE);
 			
