@@ -222,4 +222,42 @@ public class AccountUnitTest {
 		assertThat(actual).isTrue();
 	}
 	
+	@Test
+	public void Given_AnAccount_When_OutputToString_Then_ReturnAString() {
+
+		// GIVEN
+		Account account = new Account(
+			1,
+			"Mr",
+			"Aaron",
+			"Smith",
+			"asuretenant",
+			"22a Road Avenue",
+			"",
+			"Mockiton",
+			"Javashire",
+			"MO22 8JA",
+			"01234 567890",
+			"aaronsmith@mydomain.com"
+		);
+		String expected = 
+			"Account [id=1, " + 
+			"title=Mr, " + 
+			"firstName=Aaron, " +
+			"lastName=Smith, " +
+			"tenantName=asuretenant, " +
+			"addressLine1=22a Road Avenue, " + 
+			"addressLine2=, " +
+			"city=Mockiton, " +
+			"county=Javashire, " + 
+			"postCode=MO22 8JA, " +
+			"telephoneNumber=01234 567890, " +
+			"emailAddress=aaronsmith@mydomain.com]";
+		
+		// WHEN
+		String actual = account.toString();
+		
+		// THEN
+		assertThat(actual).isEqualTo(expected);
+	}
 }
