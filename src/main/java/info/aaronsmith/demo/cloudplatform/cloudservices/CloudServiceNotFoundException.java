@@ -14,6 +14,6 @@ public class CloudServiceNotFoundException extends EntityNotFoundException {
 	private static final long serialVersionUID = 1L;
 
 	public CloudServiceNotFoundException(int id) {
-		super("Service with id (" + id + ") does not exist.");
+		super("CloudService with id (" + id + ") does not exist.");
 	}
 }

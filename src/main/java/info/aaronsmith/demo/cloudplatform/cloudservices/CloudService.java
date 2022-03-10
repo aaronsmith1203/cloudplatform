@@ -7,12 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import info.aaronsmith.demo.cloudplatform.utils.Cost;
 
 @Entity
 public class CloudService {
@@ -26,15 +21,13 @@ public class CloudService {
 	private Integer id;
 	
 	@NotNull
-	@Column(nullable = false)
 	private String name;
 
+	@Column(length = 2040)
 	private String description;	
 	
+	@NotNull
 	private Integer costInPence = 0;
-	
-	@Transient // not persisted in database
-	private String cost;
 	
 	public CloudService() {}
 	
@@ -48,7 +41,6 @@ public class CloudService {
 		this.name = name;
 		this.description = description;
 		this.costInPence = costInPence;
-		this.setCost(this.costInPence);
 	}
 	
 	public CloudService(
@@ -59,7 +51,6 @@ public class CloudService {
 		this.name = name;
 		this.description = description;
 		this.costInPence = costInPence;
-		this.setCost(this.costInPence);
 	}
 
 	public Integer getId() {
@@ -88,17 +79,6 @@ public class CloudService {
 
 	public void setCostInPence(Integer costInPence) {
 		this.costInPence = costInPence;
-		this.setCost(this.costInPence);
-	}
-
-	public String getCost() {
-		this.setCost(this.costInPence);
-		return cost;
-	}
-	
-	// private so not called outside class
-	private void setCost(Integer pence) {
-		this.cost = (new Cost(pence)).toString();
 	}
 
 	@Override
@@ -123,7 +103,6 @@ public class CloudService {
 
 	@Override
 	public String toString() {
-		return "Service [id=" + id + ", name=" + name + ", description=" + description + ", costInPence=" + costInPence
-				+ ", cost=" + cost + "]";
+		return "CloudService [id=" + id + ", name=" + name + ", description=" + description + ", costInPence=" + costInPence + "]";
 	}
 }
