@@ -1,13 +1,19 @@
-# QA Project
+# QA Project Documentation
 ###### Resources
 - [Jira (Roadmap)](https://aaronsmith1203.atlassian.net/jira/software/projects/CP/boards/3/roadmap)
 
 ###### Contents
 - [[#Introduction|Introduction]]
-- [[#Risk_Assessment|Risk Assessment]]
+- [[Risk_Assessment|Risk Assessment]]
 - [[#Future|Future]]
 
 ### Introduction
+
+This project is to develop a backend for a fictional Cloud Platform. My task is to create a back-end application **REST API** using **Java** and **Spring Boot**, while utilising supporting tools, methodologies, and technologies learnt during the course.
+
+I have decided to use this project as a change to consolidate my understanding of cloud-computing and object-oriented programming by implementing some of the elements demonstrated by existing cloud providers, in particular Microsoft Azure.
+
+- currently provides the customer-layer providing account-management, and subscription-management, where customers can use their accounts to query the services offered, and their costs. And subscribe to services over a period of 1/6/12/24-monthly period, where they save money in the long-term if they commit to a longer renewal period.
 
 *Note - this document contains quotations from the repository [readme](../README.md). The readme is aimed at a more general audience, but some of the content is relevant to this documentation.*
 
@@ -18,41 +24,34 @@
 *from [README](../README.md):*
 > Your objective with this project is to achieve the following:
 >
-> To create a **REST API** using **Java** and **Spring Boot**, with utilisation of supporting tools, methodologies, and technologies, that encapsulates all fundamental and practical modules covered during training.
->
-> Specifically, you are required to create a Spring Boot API using:
 
-object-oriented programming. CRUD funtionality.
 
-An application back-end developed using **Java** and **Spring Boot**.
-Using **MySQL** to build a relational-database for application-persistence.
 
-a means of making API calls using **Postman** and a means of checking persistence (Workbench/H2 console)
+An application back-end developed using **Java** and **Spring Boot**, and using **MySQL** to build a relational-database for data persistence.
 
-**Maven** integrated-build tool. Dependency management.
-
-Writing *unit* and *integration tests* using **JUnit**, and the mocking capabilities provided by **Mockito**, and **Spring Tools**. 
-
-**Git**. Using **GitHub Workflows** to require that unit and integration-tests pass before allowing a pull-request into the `development` branch.
+Technologies used:
+- **Java** object-oriented programming language
+- **Spring Tools**
+- **Eclipse** IDE
+- **Maven** integrated-build tool. Dependency management
+- **JUnit** and **Mockito** for unit and integration testing
+- **MySQL** and **MySQL Workbench** for database development
+- **Git** and **Github** for code management and source-control
+- **Jira** for project management
 
 ##### Why are we doing this?
 
 ### Project Management
 - *see: [Jira Project](https://aaronsmith1203.atlassian.net/jira/software/projects/CP/boards/3/roadmap)*
 
-You must use **Jira** or similar project tracking software to track your project using Agile Scrum methods. You must make use of:
+I have used **Jira** to track my project using Agile/Scrum methods. 
 
-Used *MoSCoW prioritisation*.
+I have organised my work around **epics** and **user stories**, further breaking these requirements down into small tasks that can be implemented. I used *story points* to estimate the relative effort required for tasks, and further evaluated the priority of tasks using *MoSCoW prioritisation*.
 
-Estimations of effort using *story points*.
-
-Work organised into *Epics*, *User Stories*, and *Tasks*.
+I split the 5 days into two sprints of roughly 2.5 days each. While these are quite short it gives me an opportunity to review my progress after the first sprint and readjust for the second sprint. This process is good practice for me, but also gives me a chance to perform a high-level evaluation so that I don't lose perspective.
 
 #### Risk Assessment
-You must also produce a risk assessment to identify and analyse any potential risks to your application and infrastructure. This must be evidenced in your documentation.
-
-
-
+- *see: [Risk Assessment](risk-assessment.md)*
 
 ### Code
 - *see: [Git repository (GitHub)](https://github.com/aaronsmith1203/cloudplatform)*
@@ -64,10 +63,6 @@ Java package `info.aaronsmith.demo.cloudplatform`
 - Code related to account-management for the cloud-platform is stored in the `accounts` sub-package.
 - Code related to the services offered by the cloud-platform is stored in the `services` sub-package.
 - Code related to the RESTful API controller is stored in the `api` sub-package.
-
-##### Releases
-- [v0.0.1](..)
-
 
 ### Getting Started with the Application
 Application files can be found in the `resources/` directory within the project repository.
@@ -99,8 +94,7 @@ A collection of **Postman** requests have been exported to a file called `Cloud 
 This collection of request definitions can be imported into Postman and used against the REST API.
 
 ### Application Demo
-- overview
-- **Account** and **CloudService** entities.
+Current build implements **Account** and **CloudService** entities for the cloud platform.
 
 #### API - Working with Accounts
 ##### API - Creating an Account
@@ -111,19 +105,15 @@ This collection of request definitions can be imported into Postman and used aga
 <img src="images/delete_account_exception.png" />
 
 ##### API - Reading an Account
-get all accounts
+
 <img src="images/get_allaccounts_success.png" />
 
-get an account by id
 <img src="images/get_account_by_id_success.png" />
 
-get an account by id, exception
 <img src="images/get_account_by_id_exception.png" />
 
-get an account by email address
 <img src="images/get_account_by_email_success.png" />
 
-get an account by email, exception
 <img src="images/get_account_by_id_exception.png" />
 
 
@@ -171,5 +161,8 @@ get an account by email, exception
 <img src="images/test-coverage.png" />
 
 ### Future
+In the future I wish to continue improving my software development skills by implementing a services-layer that will provide the hosted services by using my experience of managing on-premises IT infrastructure.
 
+I hope to make use of server and network equipment that I use in my home lab for learning new technologies to host the services that the cloud platform offers. I anticipate that I will need to find an architecture to work with the APIs provided by technologies such as VMware ESXi to provision virtual machines that are accessible to customers.
 
+I want the platform to be independent of the backend technologies that host the services. I expect I will use an adapter design structure so that the cloud-platform does not need to be modified directly in order to implement a different technology for virtual machines or networking.
