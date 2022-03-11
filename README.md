@@ -1,5 +1,9 @@
+<<<<<<< HEAD
 ![GitHub last commit (branch)](https://img.shields.io/github/last-commit/aaronsmith1203/cloudplatform/development)
 # Cloud Platform 
+=======
+# ASure Cloud Platform
+>>>>>>> development
 
 Demo Cloud Platform *(aka 'ASure Cloud')*
 
