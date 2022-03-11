@@ -1,7 +1,7 @@
-# ASure Cloud Platform
+![GitHub last commit (branch)](https://img.shields.io/github/last-commit/aaronsmith1203/cloudplatform/development)
+# Cloud Platform 
 
-### Entity-Relationship Diagram
-<img src="/documentation/erd-diagram.png" width="209" />
+##### QA Training
+- see: [[/documentation/qa-project|QA Project Documentation]]
 
-### Resources
-- [Jira Project](https://aaronsmith1203.atlassian.net/browse/CP)
+This application forms the final assessment for the Software Development Bootcamp provided by QA Training that I attended (Jan-Mar 2022).
