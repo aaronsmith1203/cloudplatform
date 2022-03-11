@@ -1,4 +1,4 @@
-# ASure Cloud Platform 
+# ASure Cloud Platform
 
 ### Entity-Relationship Diagram
 <img src="/documentation/erd-diagram.png" width="209" />
