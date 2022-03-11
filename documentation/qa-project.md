@@ -1,35 +1,18 @@
 # QA Project Documentation
-###### Resources
 - [Jira (Roadmap)](https://aaronsmith1203.atlassian.net/jira/software/projects/CP/boards/3/roadmap)
 
-###### Contents
-- [[#Introduction|Introduction]]
-- [[Risk_Assessment|Risk Assessment]]
-- [[#Future|Future]]
 
 ### Introduction
 
-This project is to develop a backend for a fictional Cloud Platform. My task is to create a back-end application **REST API** using **Java** and **Spring Boot**, while utilising supporting tools, methodologies, and technologies learnt during the course.
+The purpose of this project is to develop a backend for a fictional **Cloud Platform** (aka **ASure Cloud**).
+
+I will create a back-end application **REST API** using **Java** and **Spring Boot**, while utilising supporting tools, methodologies, and technologies learnt during the course.
 
 I have decided to use this project as a change to consolidate my understanding of cloud-computing and object-oriented programming by implementing some of the elements demonstrated by existing cloud providers, in particular Microsoft Azure.
 
-- currently provides the customer-layer providing account-management, and subscription-management, where customers can use their accounts to query the services offered, and their costs. And subscribe to services over a period of 1/6/12/24-monthly period, where they save money in the long-term if they commit to a longer renewal period.
+The application currently provides part of the customer-layer providing account-management, and service-management. Customers can use their accounts to query the services offered, and their costs.
 
-*Note - this document contains quotations from the repository [readme](../README.md). The readme is aimed at a more general audience, but some of the content is relevant to this documentation.*
-
-**Cloud Platform** (aka **ASure Cloud**), 
-
-
-##### Why?
-*from [README](../README.md):*
-> Your objective with this project is to achieve the following:
->
-
-
-
-An application back-end developed using **Java** and **Spring Boot**, and using **MySQL** to build a relational-database for data persistence.
-
-Technologies used:
+#### Technologies used:
 - **Java** object-oriented programming language
 - **Spring Tools**
 - **Eclipse** IDE
@@ -38,8 +21,6 @@ Technologies used:
 - **MySQL** and **MySQL Workbench** for database development
 - **Git** and **Github** for code management and source-control
 - **Jira** for project management
-
-##### Why are we doing this?
 
 ### Project Management
 - *see: [Jira Project](https://aaronsmith1203.atlassian.net/jira/software/projects/CP/boards/3/roadmap)*
