@@ -2,6 +2,6 @@
 # Cloud Platform 
 
 ##### QA Training
-- see: [[/documentation/qa-project|QA Project Documentation]]
+- *see: [QA Project Documentation](/documentation/qa-project.md)*
 
 This application forms the final assessment for the Software Development Bootcamp provided by QA Training that I attended (Jan-Mar 2022).
