@@ -1,6 +1,5 @@
 ![GitHub last commit (branch)](https://img.shields.io/github/last-commit/aaronsmith1203/cloudplatform/development)
-
-# Cloud Platform
+# Cloud Platform 
 
 Demo Cloud Platform *(aka 'ASure Cloud')*
 

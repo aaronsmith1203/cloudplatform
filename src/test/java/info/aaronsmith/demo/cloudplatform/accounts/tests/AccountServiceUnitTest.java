@@ -186,6 +186,34 @@ public class AccountServiceUnitTest {
 		assertThat(actual).isEqualTo(EXPECTED_ACCOUNT);
 		Mockito.verify(repo, Mockito.times(1)).findById(INPUT_ID);
 	}
+	
+	@Test
+	public void Given_ValidEmailAddress_When_GetAccount_Then_ReturnAccount() {
+		// GIVEN
+		final String INPUT_EMAIL = "aaronsmith@mydomain.com";
+		final Account EXPECTED_ACCOUNT = new Account(
+			3,
+			"Mr",
+			"Aaron",
+			"Smith",
+			"asuretenant",
+			"22a Road Avenue",
+			"",
+			"Mockiton",
+			"Javashire",
+			"MO22 8JA",
+			"01234 567890",
+			"aaronsmith@mydomain.com"
+		);
+
+		// WHEN
+		Mockito.when(repo.findAccountByEmailAddress(INPUT_EMAIL)).thenReturn(EXPECTED_ACCOUNT);
+		Account actual = service.getAccount(INPUT_EMAIL);
+
+		// THEN
+		assertThat(actual).isEqualTo(EXPECTED_ACCOUNT);
+		Mockito.verify(repo, Mockito.times(1)).findAccountByEmailAddress(INPUT_EMAIL);
+	}
 
 	@Test
 	public void Given_NonExistantId_When_GetAccount_Then_ThrowAccountNotFoundException() {
@@ -200,6 +228,21 @@ public class AccountServiceUnitTest {
 		// THEN
 		assertThat(actual.getClass()).isEqualTo(EXPECTED_EXCEPTION.getClass());
 		Mockito.verify(repo, Mockito.times(1)).findById(INPUT_ID);
+	}
+	
+	@Test
+	public void Given_NonExistantEmailAddress_When_GetAccount_Then_ThrowAccountNotFoundException() {
+		// GIVEN
+		final String INPUT_EMAIL = "notreal@noaddress.com";
+		final Exception EXPECTED_EXCEPTION = new AccountNotFoundException(INPUT_EMAIL);
+
+		// WHEN
+		Mockito.when(repo.findAccountByEmailAddress(INPUT_EMAIL)).thenThrow(EXPECTED_EXCEPTION);
+		Throwable actual = catchThrowable(() -> service.getAccount(INPUT_EMAIL));
+
+		// THEN
+		assertThat(actual.getClass()).isEqualTo(EXPECTED_EXCEPTION.getClass());
+		Mockito.verify(repo, Mockito.times(1)).findAccountByEmailAddress(INPUT_EMAIL);
 	}
 
 	// UPDATE

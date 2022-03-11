@@ -51,6 +51,15 @@ public class AccountService {
 		}
 	}
 	
+	// READ
+	public Account getAccount(String emailAddress) {
+		Account returnValue = repo.findAccountByEmailAddress(emailAddress);
+		if (returnValue == null) {
+			throw new AccountNotFoundException(emailAddress); 
+		}
+		return returnValue;
+	}
+	
 	// UPDATE
 	public Account updateAccount(Integer id, Account account) throws AccountNotFoundException, TenantNameUnavailableException {
 		try {
