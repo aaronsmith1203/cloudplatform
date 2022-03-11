@@ -1,34 +1,17 @@
 # Risk Assessment
 - *back: [QA Project Documentation](qa-project.md)*
 
-###### Risks
-- 
-- Possibility of missing deadline 
-- Computer failure 
-  - Java
-- Illness or burnout , eye-strain
-- unforeseen personal circumstances
-- Procrastination
-  - Regular breaks
-- Application not building in the lead up to the deadline
-  - attempt to build the application a day prior to the deadline, to leave time to resolve build issues.
-  - Periodically push working builds of the application to Github so that older version can be fallen-back to in the worst case scenario
-- Not completing all of the tasks assigned during a sprint.
-- Being overly ambitious with what I can achieve in the time limit.
-  - Using agile methodology.
-  - Breaking work down into features that can be implemented individually using the feature-branch model of source-control, with the goal of the application functioning when the feature is pulled into the development branch. Regardless of how ambitious I am, I shouldn't get caught short without a working project.
-  - 
 
-### *Not having a serviceable application and project documentation to submit by the deadline*
+### *Not having a working build of the application to submit by the deadline*
 
 ##### Evaluation
-Receiving an immediate failure in the my course assessment.
+Risk not having a working application to submit.
 
 ##### Likelihood
-This is very likely as I have a tendency to over-extend myself, and I will be working with technologies that I'm still inexperienced with.
+This has a **moderate** likelihood.
 
 ##### Impact Level
-The impact is **high** as I will automatically fail my assessment. 
+The impact is **high** as I will perform poorly in my assessment. 
 
 While any work done will still contribute towards my personal experience, and will by no means be wasted, it is also preferable that I work towards the deadline as will be expected in real-world projects.
 
@@ -36,7 +19,9 @@ While any work done will still contribute towards my personal experience, and wi
 The responsibility is mine.
 
 ##### Response
-Continue to work on the project regardless of assessment deadline. 
+Still submit my code repository and project documentation. This is still demonstrative of what I am working towards.
+
+I will also continue to work on the project regardless of assessment deadline. 
 
 It is important that I continue to develop my skills, and produce working applications that are demonstrative of my capabilities. I can show and discuss these with potential employers.
 
@@ -45,34 +30,75 @@ I will **mitigate** this risk by periodically pushing working builds of the appl
 
 I will also use an agile development methodology to implement features in small pieces of work that result in a working application. It is important that every added feature results in a working minimum-viable-product.
 
-As the project involves documentation, I will create diagrams, take screenshots, and making notes in the project documentation as I go. I can demonstrate an agile approach to documentation where I can update it as I go.This ensures that I will definitely have *something* to submit by the deadline even if it's incomplete.
+### *Not having a project documentation to submit by the deadline*
+
+##### Evaluation
+Receiving a poor score on my project assessment, or failing completely.
+
+##### Likelihood
+The likelihood is **high** as I have a tendency to procrastinate on documentation.
+
+##### Impact Level
+The impact is **high** as I will perform poorly in my assessment. 
+
+While any work done will still contribute towards my personal experience, and will by no means be wasted, it is also preferable that I work towards the deadline as will be expected in real-world projects.
+
+##### Responsibility
+The responsibility is mine.
+
+##### Response
+Still submit my application, as it impacts the grade.
+
+##### Control Measures
+I will create diagrams, take screenshots, and making notes in the project documentation as I go. I can demonstrate an agile approach to documentation where I can update it as I go.This ensures that I will definitely have *something* to submit by the deadline even if it's incomplete.
 
 It is important that I don't leave the documentation to the last minute, so keep drafting notes, and chipping away at it as I work on the project.
 
 ### *Computer failure*
-
-### *Being overly ambitious with regard to what I can achieve in the time limit*
-
-what is the scenario?
+Any hardware or software issues with my computer that will result in it being unusable to complete the work.
 
 ##### Evaluation
-what would happen if this scenario occurred?
+I would not have a computer to develop my application on, or to write the project documentation.
 
 ##### Likelihood
-This is very likely as I have a tendency to over-extend myself, and I will be working with technologies that I'm still inexperienced with.
+This has a **low**-to-**moderate** likelihood. 
 
 ##### Impact Level
-how devastating to the project would it be if this occurred?
+The impact would be **high** as it would prevent me from working on the project at all.
 
 ##### Responsibility
-who's responsibility is it to mitigate this risk?
+My responsibility.
 
 ##### Response
-what would we do if the scenario occurred?
+- Talk to my instructor.
+- Fix my computer or acquire an alternative computer.
 
 ##### Control Measures
-what can we do to decrease the likelihood and/or impact?
+I will **mitigate** this risk by ensuring that a number of friends and family who have working computers are available, and willing to lend me a computer if this were to occur during the project.
 
-- Mitigation - decreasing the likelihood of the hazard's occurrence, or the impact it would have on the project
-- Acceptance - sometimes it can be too costly to mitigate the risk in comparison to the impact it would have on the project, in which case we may choose to do nothing
-- Transfer - assigning the risk to a third party, usually in the form of an insurance policy
+By working with Java, I am already in a position where development can be performed cross-platform, so there is not a limit to the operating system of an alternate machine.
+
+I will regularly push my code to Github, and take daily backups of my local computer files (including local repository). This ensures that I won't lose too much progress.
+
+### *Illness or burnout restricting my progress*
+
+##### Evaluation
+I would not be able to work on my project if I fall ill.
+
+##### Likelihood
+This has a **moderate** likelihood, due to current Covid and flu viruses in the communnity. I also have a tendency to over-extend myself, due to high-expectations, and to get tunnel-vision with problems and neglect my personal health.
+
+##### Impact Level
+The impact would be **high** as it would prevent me from working on the project, but could also be very detrimental to me personally.
+
+##### Responsibility
+My responsibility.
+
+##### Response
+- Talk to my instructor.
+- Take time to recover, and remember that failing this assessment is not the end of the world. My health is most important.
+
+##### Control Measures
+I will **mitigate** this risk by taking regular short breaks to move about, stretch and refocus my eyes.
+
+I will also take regular longer breaks to do something besides the project. This includes meal breaks, running errands to get fresh air, and also to do hobbies so that I give my brain a chance to relax.
