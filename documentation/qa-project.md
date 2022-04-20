@@ -39,7 +39,7 @@ I split the 5 days into two sprints of roughly 2.5 days each. While these are qu
 
 - uses feature-branch model, where a branch is created for each new feature - tagged with Jira issue number, and then merged into the `development` branch. Releases of the application are created when the features and bug fixes from development are merged into the `main` branch.
 
-#### Packages
+##### Packages
 Java package `info.aaronsmith.demo.cloudplatform`
 - Code related to account-management for the cloud-platform is stored in the `accounts` sub-package.
 - Code related to the services offered by the cloud-platform is stored in the `services` sub-package.
