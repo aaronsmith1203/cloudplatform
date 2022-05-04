@@ -1,12 +1,16 @@
 package info.aaronsmith.demo.cloudplatform.cloudservices;
 
+import java.util.List;
 import java.util.Objects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -26,8 +30,11 @@ public class CloudService {
 	@Column(length = 2040)
 	private String description;	
 	
-	@NotNull
-	private Integer costInPence = 0;
+    @OneToMany(
+		cascade = CascadeType.ALL,
+		orphanRemoval = true)
+	@JoinColumn(name = "id")
+    private List<CloudServiceTerm> serviceTerms;
 	
 	public CloudService() {}
 	
@@ -35,22 +42,22 @@ public class CloudService {
 		Integer id,
 		String name,
 		String description,
-		Integer costInPence
+		List<CloudServiceTerm> serviceTerms
 	) {
 		this.id = id;
 		this.name = name;
 		this.description = description;
-		this.costInPence = costInPence;
+		this.serviceTerms = serviceTerms;
 	}
 	
 	public CloudService(
 		String name,
 		String description,
-		Integer costInPence
+		List<CloudServiceTerm> serviceTerms
 	) {
 		this.name = name;
 		this.description = description;
-		this.costInPence = costInPence;
+		this.serviceTerms = serviceTerms;
 	}
 
 	public Integer getId() {
@@ -73,17 +80,17 @@ public class CloudService {
 		this.description = description;
 	}
 
-	public Integer getCostInPence() {
-		return costInPence;
+	public List<CloudServiceTerm> getServiceTerms() {
+		return serviceTerms;
 	}
 
-	public void setCostInPence(Integer costInPence) {
-		this.costInPence = costInPence;
+	public void setServiceTerms(List<CloudServiceTerm> serviceTerms) {
+		this.serviceTerms = serviceTerms;
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(costInPence, description, id, name);
+		return Objects.hash(description, id, name, serviceTerms);
 	}
 
 	@Override
@@ -95,14 +102,14 @@ public class CloudService {
 			return false;
 		}
 		CloudService other = (CloudService) obj;
-		return Objects.equals(costInPence, other.costInPence) && 
+		return Objects.equals(id, other.id) && 
 			   Objects.equals(description, other.description) && 
-			   Objects.equals(id, other.id) && 
-			   Objects.equals(name, other.name);
+			   Objects.equals(name, other.name) && 
+			   Objects.equals(serviceTerms, other.serviceTerms);
 	}
 
 	@Override
 	public String toString() {
-		return "CloudService [id=" + id + ", name=" + name + ", description=" + description + ", costInPence=" + costInPence + "]";
+		return "CloudService [id=" + id + ", name=" + name + ", description=" + description + ", serviceTerms=" + serviceTerms + "]";
 	}
 }
